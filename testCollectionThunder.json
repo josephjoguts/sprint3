@@ -1,0 +1,252 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "MyCollection",
+    "collectionId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+    "dateExported": "2024-10-08T23:55:58.384Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "tempmanager",
+            "containerId": "",
+            "created": "2024-10-08T20:21:18.414Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "3132592c-e4e1-425f-8661-d06bd86d4b33",
+            "name": "tempmonitor",
+            "containerId": "",
+            "created": "2024-10-08T22:27:00.703Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "d8a6e7c3-0389-4193-8c35-3c5510574dbc",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "addConfig",
+            "url": "{{baseUrlManager}}/tempmanager/configuration",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-10-08T20:21:40.398Z",
+            "modified": "2024-10-08T23:16:35.454Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"configName\": \"test\",\n  \"targetTemperature\": \"18.0\",\n  \"rooms\": [\n    {\n      \"deviceId\": 3,\n      \"name\": \"roomTest1\",\n      \"isDeviceEnabled\": true\n    }, \n      {\n      \"deviceId\": 2,\n      \"name\": \"roomTest2\",\n      \"isDeviceEnabled\": false\n    }\n    ]\n  \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "a11f8951-132e-4932-b2af-94ec25fb47f0",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "updateConfigRequest",
+            "url": "{{baseUrlManager}}/tempmanager/configuration",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-10-08T20:29:44.740Z",
+            "modified": "2024-10-08T20:32:50.620Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"configName\": \"test\",\n  \"targetTemperature\": \"18.0\",\n  \"rooms\": [\n    { \n      \"room_id\":1,\n      \"deviceId\": 123,\n      \"name\": \"roomTest\",\n      \"isDeviceEnabled\": true\n    }, \n      {\n      \"room_id\":2,\n      \"deviceId\": 124,\n      \"name\": \"roomTest\",\n      \"isDeviceEnabled\": true\n    }\n    ]\n  \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "3c781cc3-6c1c-4efd-85f1-7c45d7d982f1",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "deleteConfig",
+            "url": "{{baseUrlManager}}/tempmanager/configuration/{id}",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-10-08T20:30:51.950Z",
+            "modified": "2024-10-08T23:16:31.984Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "",
+                    "isPath": true
+                }
+            ]
+        },
+        {
+            "_id": "13303c28-21ac-4af7-a157-630dc6dc6a94",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "sendConfigToDevices",
+            "url": "{{baseUrlManager}}/tempmanager/configuration/send/{id}",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-10-08T20:31:46.496Z",
+            "modified": "2024-10-08T23:16:29.375Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ]
+        },
+        {
+            "_id": "50515cb6-7e16-4cd5-acd2-33783960e787",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "getConfigurations",
+            "url": "{{baseUrlManager}}/tempmanager/configuration",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-10-08T20:37:50.052Z",
+            "modified": "2024-10-08T23:16:26.991Z",
+            "headers": []
+        },
+        {
+            "_id": "e3a4b880-7770-42ed-9fd8-2913409499bd",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "getConcreteConfiguration",
+            "url": "{{baseUrlManager}}/tempmanager/configuration/{configName}",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-10-08T20:38:28.316Z",
+            "modified": "2024-10-08T23:16:21.861Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "configName",
+                    "value": "test",
+                    "isPath": true
+                }
+            ]
+        },
+        {
+            "_id": "a2a37f8d-6468-4725-9e84-377b67a89271",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "addDevice",
+            "url": "{{baseUrlManager}}/tempmanager/device",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-10-08T20:39:32.697Z",
+            "modified": "2024-10-08T23:39:49.881Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"device\",\n  \"description\": \"myDevice\",\n  \"serial\": \"123df123df\"\n  \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f5360756-3716-45a3-94e3-118aad9b892e",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "getDevices",
+            "url": "{{baseUrlManager}}/tempmanager/device",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-10-08T20:41:30.930Z",
+            "modified": "2024-10-08T23:16:13.620Z",
+            "headers": []
+        },
+        {
+            "_id": "c0e7b558-8778-4302-a5d5-51eda415bb85",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "deleteDevice",
+            "url": "{{baseUrlManager}}/tempmanager/device/{id}",
+            "method": "DELETE",
+            "sortNum": 110000,
+            "created": "2024-10-08T20:42:40.090Z",
+            "modified": "2024-10-08T22:00:04.374Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ]
+        },
+        {
+            "_id": "89310461-c4ab-46e4-b0b5-e50ae86f6183",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "updateRoom",
+            "url": "{{baseUrlManager}}/tempmanager/room",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-10-08T20:43:14.818Z",
+            "modified": "2024-10-08T20:43:50.906Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "      {\n      \"roomId\": 1,  \n      \"deviceId\": 124,\n      \"name\": \"roomTest\",\n      \"isDeviceEnabled\": false\n    }",
+                "form": []
+            }
+        },
+        {
+            "_id": "45dada7d-30d5-4fbc-9e5c-371da61a5ff7",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "2c06e524-fa4d-4339-82a3-786c0631bc4d",
+            "name": "setDeviceOld",
+            "url": "{{baseUrlManager}}/tempmanager/devices/{deviceId}/status",
+            "method": "PUT",
+            "sortNum": 140000,
+            "created": "2024-10-08T20:50:36.754Z",
+            "modified": "2024-10-08T20:51:06.144Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "deviceId",
+                    "value": "",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"status\": \"on\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "c1a95765-33de-4084-8952-1a37d734aea5",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "3132592c-e4e1-425f-8661-d06bd86d4b33",
+            "name": "getSettings",
+            "url": "{{baseUrlManager}}/tempmonitor/config",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2024-10-08T22:27:09.975Z",
+            "modified": "2024-10-08T23:16:02.455Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"from\": \"2024-10-08T00:00:00Z\",\n  \"to\": \"2024-10-10T23:59:59Z\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2615ecdf-ad20-457d-ba14-f52abc96d876",
+            "colId": "b16a1c1b-e392-418c-a0ec-56ddd574734f",
+            "containerId": "3132592c-e4e1-425f-8661-d06bd86d4b33",
+            "name": "addTelemetry",
+            "url": "{{baseUrlManager}}/tempmonitor/telemetry",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2024-10-08T22:48:24.732Z",
+            "modified": "2024-10-08T23:16:01.369Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"deviceId\": 2,\n  \"currentTemperature\": 2\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "t6-ADjgTz___8NXPqGGxQUjHtK7LepjLOZEENKAIPYHcr9h10LLS0vugxAD-qalEXgciA8fgfHkgopBO7zJ34g"
+}

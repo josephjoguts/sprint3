@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tempmonitor-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tempmonitor-database
+  template:
+    metadata:
+      labels:
+        app: tempmonitor-database
+    spec:
+      containers:
+        - name: tempmonitor-database
+          image: postgres:latest
+          env:
+            - name: POSTGRES_USER
+              value: "admin"
+            - name: POSTGRES_PASSWORD
+              value: "adminPassword"
+            - name: POSTGRES_DB
+              value: "temperature_monitor_db"
+          ports:
+            - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tempmonitor-database
+spec:
+  type: ClusterIP
+  selector:
+    app: tempmonitor-database
+  ports:
+    - port: 5432
+      targetPort: 5432
+
+
+

@@ -1,22 +1,308 @@
 openapi: 3.0.0
 info:
-  title: simple-api
-  version: 0.1.0
-
+  title: Temperature Management API
+  version: 1.0.0
 paths:
-  /hello:
-    get:
+  /tempmanager/configuration:
+    post:
+      summary: Добавляет конфигурацию
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configName:
+                  type: string
+                targetTemperature:
+                  type: string
+                rooms:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      deviceId:
+                        type: integer
+                      name:
+                        type: string
+                      isDeviceEnabled:
+                        type: boolean
       responses:
         '200':
-          description: A simple hello world!
+          description: No content
+
+    put:
+      summary: Обновляет конфигурацию
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configName:
+                  type: string
+                targetTemperature:
+                  type: string
+                rooms:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      room_id:
+                        type: integer
+                      deviceId:
+                        type: integer
+                      name:
+                        type: string
+                      isDeviceEnabled:
+                        type: boolean
+      responses:
+        '200':
+          description: No content
+
+  /configuration/{id}:
+    delete:
+      summary: Удаляет конфигурацию
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID конфигурации
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: No content
+
+  /configuration/send/{id}:
+    post:
+      summary: Отправляет конфигурацию в приборы
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID конфигурации
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: No content
+
+  /configuration:
+    get:
+      summary: Посмотреть доступные конфигурации
+      responses:
+        '200':
+          description: List of configuration names
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-              example: Hello from a mocked response!
-      x-kusk:
-        upstream:
-          service:
-            name: hello-world-svc
-            namespace: default
-            port: 8080
+                type: array
+                items:
+                  type: string
+
+  /configuration/{configName}:
+    get:
+      summary: Посмотреть конкретную конфигурацию
+      parameters:
+        - name: configName
+          in: path
+          required: true
+          description: Название конфигурации
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detailed configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rooms:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        device:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            serial:
+                              type: string
+                        roomName:
+                          type: string
+                        isDeviceEnabled:
+                          type: boolean
+                  configName:
+                    type: string
+                  targetTemperature:
+                    type: number
+
+  /tempmanager/device:
+    post:
+      summary: Добавить девайс
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                serial:
+                  type: string
+      responses:
+        '200':
+          description: No content
+
+    get:
+      summary: Посмотреть доступные девайсы
+      responses:
+        '200':
+          description: List of devices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    serial:
+                      type: string
+
+  /tempmanager/device/{id}:
+    delete:
+      summary: Удалить доступные девайсы
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID девайса
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: No content
+
+  /tempmanager/room:
+    post:
+      summary: Обновить и отправить в приборы изменение о комнате
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  type: integer
+                deviceId:
+                  type: integer
+                name:
+                  type: string
+                isDeviceEnabled:
+                  type: boolean
+      responses:
+        '200':
+          description: No content
+
+  /tempmanager/devices/{deviceId}/status:
+    post:
+      summary: Deprecated изменить настройку пользователю по конкретному прибору
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          description: ID устройства
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        '200':
+          description: No content
+
+  /tempmonitor/config:
+    post:
+      summary: Просмотреть телеметрию
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                from:
+                  type: string
+                  format: date-time
+                to:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Telemetry data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  telemetryTicks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        roomId:
+                          type: integer
+                        deviceId:
+                          type: integer
+                        isDeviceEnabled:
+                          type: boolean
+                        currentTemperature:
+                          type: number
+                        createdAt:
+                          type: string
+                          format: date-time
+
+  /tempmonitor/telemetry:
+    post:
+      summary: Добавить телеметрию в сервис
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: integer
+                currentTemperature:
+                  type: number
+      responses:
+        '200':
+          description: No content
