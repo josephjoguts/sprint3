@@ -1,0 +1,333 @@
+{
+    "info": {
+        "_postman_id": "56809ed3-b4e8-408a-be3e-542b45b1d861",
+        "name": "MyCollection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "tempmanager",
+            "item": [
+                {
+                    "name": "addConfig",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/configuration",
+                            "path": [
+                                "tempmanager",
+                                "configuration"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"configName\": \"test\",\n  \"targetTemperature\": \"18.0\",\n  \"rooms\": [\n    {\n      \"deviceId\": 3,\n      \"name\": \"roomTest1\",\n      \"isDeviceEnabled\": true\n    }, \n      {\n      \"deviceId\": 2,\n      \"name\": \"roomTest2\",\n      \"isDeviceEnabled\": false\n    }\n    ]\n  \n}"
+                        }
+                    }
+                },
+                {
+                    "name": "updateConfigRequest",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/configuration",
+                            "path": [
+                                "tempmanager",
+                                "configuration"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"configName\": \"test\",\n  \"targetTemperature\": \"18.0\",\n  \"rooms\": [\n    { \n      \"room_id\":1,\n      \"deviceId\": 123,\n      \"name\": \"roomTest\",\n      \"isDeviceEnabled\": true\n    }, \n      {\n      \"room_id\":2,\n      \"deviceId\": 124,\n      \"name\": \"roomTest\",\n      \"isDeviceEnabled\": true\n    }\n    ]\n  \n}"
+                        }
+                    }
+                },
+                {
+                    "name": "deleteConfig",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/configuration/:id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": ""
+                                }
+                            ],
+                            "path": [
+                                "tempmanager",
+                                "configuration",
+                                ":id"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "sendConfigToDevices",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/configuration/send/:id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ],
+                            "path": [
+                                "tempmanager",
+                                "configuration",
+                                "send",
+                                ":id"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "getConfigurations",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/configuration",
+                            "path": [
+                                "tempmanager",
+                                "configuration"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "getConcreteConfiguration",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/configuration/:configName",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "configName",
+                                    "value": "test"
+                                }
+                            ],
+                            "path": [
+                                "tempmanager",
+                                "configuration",
+                                ":configName"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "addDevice",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/device",
+                            "path": [
+                                "tempmanager",
+                                "device"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"device\",\n  \"description\": \"myDevice\",\n  \"serial\": \"123df123df\"\n  \n}"
+                        }
+                    }
+                },
+                {
+                    "name": "getDevices",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/device",
+                            "path": [
+                                "tempmanager",
+                                "device"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "deleteDevice",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/device/:id",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ],
+                            "path": [
+                                "tempmanager",
+                                "device",
+                                ":id"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "updateRoom",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/room",
+                            "path": [
+                                "tempmanager",
+                                "room"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "      {\n      \"roomId\": 1,  \n      \"deviceId\": 124,\n      \"name\": \"roomTest\",\n      \"isDeviceEnabled\": false\n    }"
+                        }
+                    }
+                },
+                {
+                    "name": "setDeviceOld",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmanager/devices/:deviceId/status",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "deviceId",
+                                    "value": ""
+                                }
+                            ],
+                            "path": [
+                                "tempmanager",
+                                "devices",
+                                ":deviceId",
+                                "status"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"status\": \"on\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tempmonitor",
+            "item": [
+                {
+                    "name": "getSettings",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmonitor/config",
+                            "path": [
+                                "tempmonitor",
+                                "config"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"from\": \"2024-10-08T00:00:00Z\",\n  \"to\": \"2024-10-10T23:59:59Z\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "addTelemetry",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrlManager}}/tempmonitor/telemetry",
+                            "path": [
+                                "tempmonitor",
+                                "telemetry"
+                            ],
+                            "host": [
+                                "{{baseurlmanager}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"deviceId\": 2,\n  \"currentTemperature\": 2\n}"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

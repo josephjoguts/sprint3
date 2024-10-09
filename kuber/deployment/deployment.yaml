@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tempmanager
+  annotations:
+    konghq.com/strip-path: 'true'
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - path: /tempmanager
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tempmanager
+                port:
+                  number: 8080
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tempmonitor
+  annotations:
+    konghq.com/strip-path: 'true'
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - path: /tempmonitor
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tempmonitor
+                port:
+                  number: 8081

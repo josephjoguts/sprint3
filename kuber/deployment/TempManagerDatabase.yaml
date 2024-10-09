@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tempmanager-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tempmanager-database
+  template:
+    metadata:
+      labels:
+        app: tempmanager-database
+    spec:
+      containers:
+        - name: tempmanager-database
+          image: postgres:latest
+          env:
+            - name: POSTGRES_USER
+              value: "admin"
+            - name: POSTGRES_PASSWORD
+              value: "adminPassword"
+            - name: POSTGRES_DB
+              value: "temperature_manager_db"
+          ports:
+            - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tempmanager-database
+spec:
+  type: ClusterIP
+  selector:
+    app: tempmanager-database
+  ports:
+    - port: 5432
+      targetPort: 5432
